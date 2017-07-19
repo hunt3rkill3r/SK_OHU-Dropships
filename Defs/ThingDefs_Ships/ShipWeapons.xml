@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+	<!-- Box -->
+  <ThingDef ParentName="ResourceBase">
+    <defName>ShipTurretTemplate</defName>
+    <label>DropShip Blaster Turret(boxed)</label>
+    <description>An improvised turret that automatically fires at nearby enemies. Explodes when damaged. Its hacked-together AI brain isn't very smart, and can't be directly controlled, so beware of friendly fire.</description>
+    <graphicData>
+      <texPath>Things/ShipWeapons/ShipWeapon_Item</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <stackLimit>1</stackLimit>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+      <MarketValue>1000</MarketValue>
+      <Mass>15</Mass>
+      <Flammability>1.0</Flammability>
+			<DeteriorationRate>0.3</DeteriorationRate>
+		</statBases>
+    <intricate>true</intricate>
+    <thingCategories>
+      <li>Weapons</li>
+    </thingCategories>
+    <recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>HeavyArmsBench</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+      <researchPrerequisite>GunTurrets</researchPrerequisite>
+    </recipeMaker>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+    <costStuffCount>150</costStuffCount>
+    <costList>
+			<Component>10</Component>
+			<Mechanism>8</Mechanism>
+			<SentryBlasterTurret_Crate>1</SentryBlasterTurret_Crate>
+    </costList>
+    <tickerType>Normal</tickerType>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="OHUShips.CompProperties_ShipWeapon">
+        <compClass>OHUShips.CompShipWeapon</compClass>
+        <availableToShips>
+					<li>OHUDropShip</li>
+				</availableToShips>
+        <weaponSystemType>LightCaliber</weaponSystemType>
+        <TurretToInstall>ShipTurret_Turret</TurretToInstall>
+      </li>
+    </comps>
+  </ThingDef>
+	<!-- Dropship Blaster Turret -->
+	<ThingDef ParentName="TurretBase">
+		<thingClass>OHUShips.Building_ShipTurret</thingClass>
+    <defName>ShipTurret_Turret</defName>
+    <label>DropShip Blaster Turret</label>
+		<description>A Blaster turret that automatically fires at nearby enemies. Explodes when damaged. Its hacked-together AI brain isn't very smart, and can't be directly controlled, so beware of friendly fire.</description>
+		<graphicData>
+      <texPath>Things/ShipWeapons/LightCaliber_Base</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+		<drawerType>RealtimeOnly</drawerType>
+    <size>(1,1)</size>
+    <stealable>false</stealable>
+    <rotatable>false</rotatable>
+		<statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+      <Flammability>1.0</Flammability>
+      <WorkToBuild>2500</WorkToBuild>
+      <Mass>45</Mass>
+      <Beauty>-10</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+    <fillPercent>0.4</fillPercent>
+    <castEdgeShadows>false</castEdgeShadows>
+    <hasTooltip>true</hasTooltip>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+    <costStuffCount>150</costStuffCount>
+    <costList>
+			<Component>10</Component>
+			<Mechanism>8</Mechanism>
+			<SentryBlasterTurret_Crate>1</SentryBlasterTurret_Crate>
+    </costList>
+    <altitudeLayer>Blueprint</altitudeLayer>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <comps>
+		  <li Class="CompProperties_Explosive">
+        <explosiveRadius>3.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <chanceNeverExplodeFromDamage>0.5</chanceNeverExplodeFromDamage>
+      </li>
+    </comps>
+    <building>
+      <turretGunDef>Gun_DropShipTurret</turretGunDef>
+      <turretTopgraphicPath>Things/Building/Security/BlasterTurret_Top</turretTopgraphicPath>
+			<turretBurstCooldownTime>2</turretBurstCooldownTime>
+    </building>
+    <specialDisplayRadius>40</specialDisplayRadius>
+    <researchPrerequisites><li>SK_Futuristicturrets</li></researchPrerequisites>
+  </ThingDef>
+	<!-- Turret -->
+	  <ThingDef ParentName="BaseAutoTurretGun">
+    <defName>Gun_DropShipTurret</defName>
+    <label>DropShip Turret</label>
+    <graphicData>
+      <texPath>Things/Building/Security/BlasterTurret_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <description>Charge blaster attached to a turret mount.</description>
+    <soundInteract>InteractChargeRifle</soundInteract>
+    <statBases>
+      <MarketValue>2000</MarketValue>
+			<SightsEfficiency>1.55</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.80</SwayFactor>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li Class="CombatExtended.VerbPropertiesCE">
+        <recoilPattern>Mounted</recoilPattern>
+        <recoilAmount>0.41</recoilAmount>
+        <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <projectileDef>Bullet_6x24mmCharged</projectileDef>
+        <warmupTime>1.20</warmupTime>
+        <range>40</range>
+				<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+				<burstShotCount>10</burstShotCount>
+        <soundCast>ShotChargeBlaster</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+		<comps>
+			<li Class="CombatExtended.CompProperties_FireModes">
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>
+				<aiAimMode>Snapshot</aiAimMode>
+				<noSnapshot>true</noSnapshot>
+				<noSingleShot>true</noSingleShot>
+			</li>
+		</comps>
+  </ThingDef>
+</ThingDefs>
